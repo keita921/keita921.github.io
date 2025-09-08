@@ -124,7 +124,7 @@ for (let i = 0; i < heartCount; i++) {
 
   // 左右を均等に配置
   const fraction = i / heartCount;
-  const randomOffset = Math.random() * (1 / heartCount); // ちょっとランダム感
+  const randomOffset = (Math.random()-0.5) * (1 / heartCount); // ちょっとランダム感
   heart.style.left = margin + (window.innerWidth - margin * 2) * (fraction + randomOffset) + "px";
 
   // 上から少しずつランダムにスタート
@@ -139,5 +139,6 @@ for (let i = 0; i < heartCount; i++) {
 
 </body>
 </html>
+
 
 
