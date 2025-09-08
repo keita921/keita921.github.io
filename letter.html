@@ -115,16 +115,29 @@
   <a href="/">戻る</a>
 
   <script>
-    // ハートをランダムに作る（少なめ・半透明）
-    for (let i = 0; i < 30; i++) {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      heart.style.top = Math.random() * -50 + "px"; // 少し上からスタート
-      heart.style.animationDuration = 3 + Math.random() * 3 + "s";
-      document.body.appendChild(heart);
-    }
-  </script>
+const heartCount = 30;
+const margin = 20; // 左右余白
+
+for (let i = 0; i < heartCount; i++) {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+
+  // 左右を均等に配置
+  const fraction = i / heartCount;
+  const randomOffset = Math.random() * (1 / heartCount); // ちょっとランダム感
+  heart.style.left = margin + (window.innerWidth - margin * 2) * (fraction + randomOffset) + "px";
+
+  // 上から少しずつランダムにスタート
+  heart.style.top = Math.random() * -50 + "px";
+
+  // 落下スピードもランダム
+  heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+
+  document.body.appendChild(heart);
+}
+</script>
+
 </body>
 </html>
+
 
