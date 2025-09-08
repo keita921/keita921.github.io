@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>封筒</title>
+  <style>
+    body {
+      text-align: center;
+      padding: 50px;
+      font-family: sans-serif;
+      background-color: #fff0f5; /* 淡いピンク */
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #d6336c;
+    }
+
+   
+  /* 🎀 背景リボン帯 */
+  .bg-ribbon {
+    position: absolute;
+    top: 3%;        /* ← ここを40%から10%に変更して上の方へ */
+    left: -50%;
+    width: 150%;
+    height: 60px;
+    background: linear-gradient(45deg, #d6336c, #ff6699);
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    line-height: 60px;
+    transform: rotate(-20deg);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 0;
+  }
+
+    .envelope {
+      position: relative;
+      width: 250px;
+      height: 180px;
+      margin: 80px auto 50px auto;
+      background: #ffb6c1;
+      border: 2px solid #d6336c;
+      border-radius: 8px;
+      cursor: pointer;
+      overflow: hidden;
+      perspective: 1000px;
+      z-index: 1; /* リボンより上に表示 */
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffb6c1;
+      clip-path: polygon(0 0, 100% 0, 50% 50%);
+      transform-origin: top;
+      transition: transform 1s;
+      z-index: 2;
+    }
+
+    .card {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      width: 200px;
+      height: 130px;
+      background: #fff;
+      border: 2px solid #d6336c;
+      border-radius: 8px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 1s;
+      z-index: 1;
+      backface-visibility: hidden;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1s;
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .card-front {
+      background: #fff;
+      color: #d6336c;
+    }
+
+    .card-back {
+      background: #ffe6f0;
+      color: #333;
+      transform: rotateY(180deg);
+    }
+
+    /* 状態ごとの動作 */
+    .open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .open .card {
+      transform: translateX(-50%) translateY(-20%);
+    }
+
+    .flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .reset .flap {
+      transform: rotateX(0);
+    }
+
+    .reset .card {
+      transform: translateX(-50%) translateY(100%);
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      font-size: 20px;
+      text-decoration: none;
+      color: #d6336c;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🎀背景リボン帯 -->
+  <div class="bg-ribbon">Happy 6 Months 💕</div>
+
+  <h1>タップしてみて！😊</h1>
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="card">
+      <div class="card-inner" id="card-inner">
+        <div class="card-front">💖 Pair tickets 💖</div>
+        <div class="card-back">💌トレーナーとかブレスレットとか<br>お揃いにしたらかわいくない？(*^O^*) 💌</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById("envelope");
+    let state = 0; // 0=封筒閉じ, 1=封筒開けてカード表示, 2=カード裏面
+
+    envelope.addEventListener("click", () => {
+      state = (state + 1) % 3;
+      envelope.classList.remove("open", "flipped", "reset");
+
+      if (state === 0) {
+        envelope.classList.add("reset");
+      } else if (state === 1) {
+        envelope.classList.add("open");
+      } else if (state === 2) {
+        envelope.classList.add("open", "flipped");
+      }
+    });
+  </script>
+
+  <a href="index.html">戻る</a>
+</body>
+</html>
