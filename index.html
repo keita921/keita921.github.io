@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <title>Half year anniversary💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <style>
+<style>
   body { 
     font-family: sans-serif; 
-    text-align: center; 
+    text-align: center;   /* ← 全体は中央寄せ */
     padding: 50px; 
     background-color: #ffe6f0;
   }
@@ -31,17 +31,14 @@
     font-size: 2.5rem;
     white-space: nowrap;
     display: block;
-    text-align: left !important; /* ← 最優先で左寄せ */
-    margin: 0;
-    padding: 0;
+    text-align: left !important;   /* ← bodyのtext-alignを上書き */
+    margin: 0 !important;          /* ← 中央寄せの余白をリセット */
+    padding: 0 !important;
   }
 
   @media (max-width: 600px) {
     h1 {
       font-size: 1.8rem;
-      text-align: left !important; /* ← スマホ用にも再指定 */
-      margin: 0;
-      padding: 0;
     }
   }
 </style>
@@ -56,6 +53,7 @@
   <img src="keisoyo.jpg" alt="記念写真">
 </body>
 </html>
+
 
 
 
