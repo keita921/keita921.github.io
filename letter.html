@@ -2,35 +2,42 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- スマホ対応 -->
   <title>手紙</title>
   <style>
     body {
       font-family: serif;
-      line-height: 1.8;
-      padding: 50px;
+      line-height: 1.9;
+      padding: 25px;
       text-align: center;
-      background: linear-gradient(135deg, #ffe6f0, #ffb6c1); /* 不透明グラデーション */
+      background: linear-gradient(135deg, #ffe6f0, #ffb6c1);
       color: #333;
       overflow-x: hidden;
       position: relative;
     }
 
+    h1 {
+      font-size: 2em;
+      margin-bottom: 25px;
+    }
+
     .letter {
-      background: rgba(255,240,245,0.9);
-      padding: 40px;
-      max-width: 700px;
-      margin: 0 auto 30px auto;
+      background: rgba(255,240,245,0.95);
+      padding: 30px;
+      max-width: 95%;
+      margin: 0 auto 40px auto;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
       text-align: left;
       position: relative;
-      z-index: 10; /* ハートより前に表示 */
+      z-index: 10;
+      font-size: 18px;
     }
 
     a {
       display: inline-block;
       margin-top: 20px;
-      font-size: 24px;
+      font-size: 20px;
       text-decoration: none;
       color: #d6336c;
       position: relative;
@@ -39,8 +46,8 @@
 
     .heart {
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       background-color: rgba(255,77,166,0.9);
       transform: rotate(45deg);
       border-radius: 3px;
@@ -52,31 +59,24 @@
     .heart::after {
       content: "";
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       background-color: rgba(255,77,166,0.9);
       border-radius: 50%;
     }
 
-    .heart::before {
-      top: -10px;
-      left: 0;
-    }
-
-    .heart::after {
-      left: 10px;
-      top: 0;
-    }
+    .heart::before { top: -9px; left: 0; }
+    .heart::after { left: 9px; top: 0; }
 
     @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(45deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(80vh) rotate(45deg); /* 下まで落ちすぎない */
-        opacity: 0;
-      }
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(90vh) rotate(45deg); opacity: 0; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2.2em; }
+      .letter { font-size: 19px; padding: 25px; }
+      a { font-size: 21px; }
     }
   </style>
 </head>
@@ -106,7 +106,8 @@
 
     <p>
       大好きだよ。これからもよろしくね♥<br>
-      半年という区切りが特別だから、いつもより少しだけ気持ちを込めて、こんな贈り物をしてみました。わくわくカードもここから先のデートの楽しみになればいいな(☆｡☆)
+      半年という区切りが特別だから、いつもより少しだけ気持ちを込めて、こんな贈り物をしてみました。
+      わくわくカードもここから先のデートの楽しみになればいいな(☆｡☆)
     </p>
 
     <p>けーより</p>
@@ -115,31 +116,23 @@
   <a href="/">戻る</a>
 
   <script>
-const heartCount = 30;
-const margin = 20; // 左右余白
+const heartCount = 25;
+const margin = 10;
 
 for (let i = 0; i < heartCount; i++) {
   const heart = document.createElement("div");
   heart.classList.add("heart");
 
-  // 左右を均等に配置
   const fraction = i / heartCount;
-  const randomOffset = Math.random() * (1 / heartCount); // ちょっとランダム感
+  const randomOffset = Math.random() * (1 / heartCount);
   heart.style.left = margin + (window.innerWidth - margin * 2) * (fraction + randomOffset) + "px";
 
-  // 上から少しずつランダムにスタート
   heart.style.top = Math.random() * -50 + "px";
-
-  // 落下スピードもランダム
   heart.style.animationDuration = 3 + Math.random() * 3 + "s";
 
   document.body.appendChild(heart);
 }
-</script>
-
+  </script>
 </body>
 </html>
-
-
-
 
