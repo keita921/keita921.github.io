@@ -39,7 +39,7 @@
 
     /* 中身をまとめるラッパー */
     .content {
-      margin-top: 150px; /* ← 下に余白を追加して全体を下げる */
+      margin-top: 150px; /* ←ここを調整して全体を下に移動 */
     }
     
     .envelope {
@@ -157,15 +157,19 @@
   <!-- 🎀背景リボン帯 -->
   <div class="bg-ribbon">Happy 6 Months 💕</div>
 
-  <h1>タップしてみて！😊</h1>
-  <div class="envelope" id="envelope">
-    <div class="flap"></div>
-    <div class="card">
-      <div class="card-inner" id="card-inner">
-        <div class="card-front">💖 Pair tickets 💖</div>
-        <div class="card-back">💌トレーナーとかブレスレットとか<br>お揃いにしたらかわいくない？(*^O^*) 💌</div>
+  <!-- 封筒とテキストをまとめて下げる -->
+  <div class="content">
+    <h1>タップしてみて！😊</h1>
+    <div class="envelope" id="envelope">
+      <div class="flap"></div>
+      <div class="card">
+        <div class="card-inner" id="card-inner">
+          <div class="card-front">💖 Pair tickets 💖</div>
+          <div class="card-back">💌トレーナーとかブレスレットとか<br>お揃いにしたらかわいくない？(*^O^*) 💌</div>
+        </div>
       </div>
     </div>
+    <a href="/">戻る</a>
   </div>
 
   <script>
@@ -185,14 +189,6 @@
       }
     });
   </script>
-
-  <a href="/">戻る</a>
 </body>
 </html>
-
-
-
-
-
-
 
